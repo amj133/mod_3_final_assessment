@@ -18,8 +18,23 @@ class MostDangerousDayController < ApplicationController
     response = conn.get("/neo/rest/v1/feed", params)
     response = JSON.parse(response.body)
 
-    
-    binding.pry
+    date_and_count = Hash.new(0)
+    response["near_earth_objects"].each do |date, asteroids|
+      asteroids.each do |asteroid|
+        if asteroid["is_potentially_hazardous_asteroid"] == true
+          date_and_count[date] += 1
+          Asteroid.new(asteroid["name"], asteroid["neo_reference_id"])
+        end
+      end
+    end
+
+    most_dangerous = DateTime.strptime(date_and_count.sort_by {|k, v| v}.last[0], '%Y-%m-%d')
+    @most_dangerous_day = most_dangerous.strftime('%d %B, %Y')
+
+
+
+
+      # date is key -> array of asteroids as values
   end
 
 end
