@@ -9,6 +9,7 @@ class NasaService
   end
 
   def asteroids_by_date(start, finish)
+    # this belongs in wrapper class
     date_params = {"start_date" => start, "end_date" => finish}
     response = json_response("/neo/rest/v1/feed", base_params.merge!(date_params))
     date = find_most_dangerous_day(response)
@@ -35,7 +36,7 @@ class NasaService
     end
 
     def find_most_dangerous_day(response)
-      # enter earth-shatteringly (pun intended) awesome & refactored code 
+      # enter earth-shatteringly (pun intended) awesome & refactored code
     end
 
     def create_asteroids
