@@ -35,7 +35,7 @@ class MostDangerousDayController < ApplicationController
     @asteroids = []
     response["near_earth_objects"][most_dangerous_date].each do |asteroid|
       if asteroid["is_potentially_hazardous_asteroid"] == true
-        @asteroids << Asteroid.new(asteroid["name"], asteroid["neo_reference_id"])
+        @asteroids << Asteroid.new(asteroid["name"], asteroid["neo_reference_id"], asteroid["is_potentially_hazardous_asteroid"])
       end
     end
   end
