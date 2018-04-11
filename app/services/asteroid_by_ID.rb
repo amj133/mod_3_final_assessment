@@ -5,7 +5,7 @@ class AsteroidByID
   end
 
   def asteroid
-    raw_asteroid = NasaService.new(id).run
+    raw_asteroid = NasaService.new(id).find_by_id
     Asteroid.new(
       raw_asteroid["name"],
       raw_asteroid["neo_reference_id"],
