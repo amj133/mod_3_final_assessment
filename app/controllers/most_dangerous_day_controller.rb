@@ -23,7 +23,6 @@ class MostDangerousDayController < ApplicationController
     response = conn.get("/neo/rest/v1/feed", params)
     response = JSON.parse(response.body)
 
-
     date_and_count = Hash.new(0)
     response["near_earth_objects"].each do |date, asteroids|
       asteroids.each do |asteroid|
