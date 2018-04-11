@@ -14,6 +14,7 @@ describe "GET /api/v1/user/favorites with api key" do
     expect(favorites.first).to be_a(Hash)
     expect(favorites.first["id"]).to eq(1)
     expect(favorites.first["asteroid"]["name"]).to eq("153306 (2001 JL1)")
+    expect(favorites.first["asteroid"]["is_potentially_hazardous_asteroid"]).to eq(false)
   end
 end
 

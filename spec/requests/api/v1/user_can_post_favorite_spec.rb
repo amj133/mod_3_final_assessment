@@ -7,13 +7,13 @@ describe "POST /api/v1/user/favorites with api key" do
     uncle_jesse.favorites.create(neo_reference_id: "2153306")
 
     post "/api/v1/user/favorites?neo_reference_id=2021277&api_key=abc123"
-
     favorites = JSON.parse(response.body)
 
     expect(favorites).to be_a(Hash)
     expect(uncle_jesse.favorites.count).to eq(2)
-    expect(favorites.first["id"]).to eq(2)
-    expect(favorites.first["asteroid"]["name"]).to eq("21277 (1996 TO5)")
+    expect(favorites["id"]).to eq(2)
+    expect(favorites["asteroid"]["name"]).to eq("21277 (1996 TO5)")
+    expect(favorites["asteroid"]["is_potentially_hazardous_asteroid"]).to eq(false)
   end
 end
 
