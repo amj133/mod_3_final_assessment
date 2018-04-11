@@ -6,10 +6,11 @@ class NasaService
 
   def find_by_id
     json_response("/neo/rest/v1/neo/#{neo_reference_id}")
-    # conn = Faraday.new(:url => "https://api.nasa.gov/")
-    # params = { "api_key" => ENV['NASA_API_KEY'] }
-    # response = conn.get("/neo/rest/v1/neo/#{neo_reference_id}", params)
-    # response = JSON.parse(response.body)
+  end
+
+  def asteroids_by_date(start, finish)
+    date_params = {"start_date" => start, "end_date" => finish}
+    json_response("/neo/rest/v1/feed", base_params.merge!(date_params))
   end
 
 

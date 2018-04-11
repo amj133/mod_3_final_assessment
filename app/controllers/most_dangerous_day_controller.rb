@@ -7,6 +7,11 @@ class MostDangerousDayController < ApplicationController
     start = start.strftime('%Y-%m-%d')
     finish = finish.strftime('%Y-%m-%d')
 
+    # BEGIN REFACTOR
+    # asteroids_and_date = MostDangerousDay.new(params["start_date"], params["end_date"]).asteroids
+    # @most_dangerous_day = asteroids_and_date.keys.first
+    # @asteroids = asteroids_and_date[@most_dangerous_day]
+
     conn = Faraday.new(:url => "https://api.nasa.gov/")
 
     params = {
