@@ -8,9 +8,6 @@ feature "user can view most dangerous day" do
 
         fill_in("start_date", with: "1 January, 2018")
         fill_in("end_date", with: "7 January, 2018")
-
-        # select("2018-01-01", from: "start_date")
-        # select("2018-01-07", from: "end_date")
         click_button("Determine Most Dangerous Day")
 
         expect(current_path).to eq("/most_dangerous_day")
