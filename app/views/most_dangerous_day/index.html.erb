@@ -1,3 +1,11 @@
 <h3>Most Dangerous Day</h3>
 
 <%= @start_date %> - <%= @end_date %>
+
+<p>Beware of: <%= @most_dangerous_day %></p>
+<ul>
+  <% @asteroids.each do |asteroid| %>
+  <li>Name: <%= asteroid.name %></li>
+  <li>NEO Reference ID: <%= asteroid.neo_reference_id %></li><br><br>
+  <% end %>
+</ul>
