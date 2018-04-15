@@ -6,10 +6,17 @@ class MostDangerousDay
   end
 
   def asteroids
-    NasaService.new.asteroids_by_date(start_date, end_date)
+    NasaService.new.asteroids_by_date(search_params)
   end
 
   private
     attr_reader :start_date, :end_date
+
+    def search_params
+      {
+        "start_date" => start_date,
+        "end_date" => end_date
+      }
+    end
 
 end

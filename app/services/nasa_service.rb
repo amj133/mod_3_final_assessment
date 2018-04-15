@@ -1,16 +1,18 @@
 class NasaService
 
-  def initialize(id = nil)
-    @neo_reference_id = id
+  def initialize(search_params = {})
+    @neo_reference_id = search_params[:neo_reference_id]
+    @start_date = search_params[:start_date]
+    @end_date = search_params[:end_date]
   end
 
-  def find_by_id
+  def asteroid_by_id
     json_response("/neo/rest/v1/neo/#{neo_reference_id}")
   end
 
-  def asteroids_by_date(start, finish)
+  def asteroids_by_date
     # this belongs in wrapper class
-    date_params = {"start_date" => start, "end_date" => finish}
+    date_params = {"start_date" => start_date, "end_date" => end_date}
     response = json_response("/neo/rest/v1/feed", base_params.merge!(date_params))
     date = find_most_dangerous_day(response)
     { date: create_asteroids }

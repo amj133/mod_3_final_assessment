@@ -2,10 +2,10 @@ class MostDangerousDayController < ApplicationController
   def index
     start = DateTime.strptime(params["start_date"], '%d %B, %Y')
     finish = DateTime.strptime(params["end_date"], '%d %B, %Y')
-    @start_date = start.strftime("%B %-d, %Y")
-    @end_date = finish.strftime("%B %-d, %Y")
-    start = start.strftime('%Y-%m-%d')
-    finish = finish.strftime('%Y-%m-%d')
+    @start_range = start.strftime("%B %-d, %Y")
+    @end_range = finish.strftime("%B %-d, %Y")
+    start_search = start.strftime('%Y-%m-%d')
+    end_search = finish.strftime('%Y-%m-%d')
 
     # BEGIN REFACTOR
     # asteroids_and_date = MostDangerousDay.new(params["start_date"], params["end_date"]).asteroids
@@ -15,8 +15,8 @@ class MostDangerousDayController < ApplicationController
     conn = Faraday.new(:url => "https://api.nasa.gov/")
 
     params = {
-      "start_date" => start,
-      "end_date" => finish,
+      "start_date" => start_search,
+      "end_date" => end_search,
       "api_key" => ENV['NASA_API_KEY']
     }
 

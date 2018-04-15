@@ -5,7 +5,7 @@ class AsteroidByID
   end
 
   def asteroid
-    raw_asteroid = NasaService.new(id).find_by_id
+    raw_asteroid = NasaService.new(search_params).asteroid_by_id
     Asteroid.new(
       raw_asteroid["name"],
       raw_asteroid["neo_reference_id"],
@@ -15,4 +15,8 @@ class AsteroidByID
 
   private
     attr_reader :id
+
+    def search_params
+      {neo_reference_id: id}
+    end
 end
