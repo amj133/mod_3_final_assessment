@@ -8,13 +8,13 @@ describe MostDangerousDay do
 
         start_date = "2018-01-01"
         end_date = "2018-01-07"
-        date_and_asteroids = MostDangeousDay.new(start_date, end_date).asteroids
+        date_and_asteroids = MostDangerousDay.new(start_date, end_date).asteroids
 
         expect(date_and_asteroids.keys[0]).to eq("2018-01-01")
         expect(date_and_asteroids["2018-01-01"].count).to eq(3)
         date_and_asteroids["2018-01-01"].each do |asteroid|
           expect(asteroid).to be_a(Asteroid)
-          expect(asteroid["is_potentially_hazardous_asteroid"]).to eq(true)
+          expect(asteroid.hazardous).to eq(true)
         end
       end
     end

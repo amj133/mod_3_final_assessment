@@ -11,7 +11,7 @@ class NasaService
   end
 
   def asteroids_by_date
-    response = json_response("/neo/rest/v1/feed", date_params)
+    json_response("/neo/rest/v1/feed", date_params)
   end
 
 
