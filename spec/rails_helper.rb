@@ -7,6 +7,16 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'support/factory_bot'
 
+def most_dangerous_day_stub
+  uri = "/neo/rest/v1/feed?start_date=2018-01-01&end_date=2018-01-07&api_key=CnBYHgliiSqAiAkdkPdvuaZbCxXcnZDRO6gJCV7Z"
+  get_nasa_service_stub("asteroids_2018-01-01_to_2018-01-07", uri)
+end
+
+def get_nasa_service_stub(filename, uri)
+  json_response = File.open("./spec/fixtures/#{filename}.json")
+  stub_request(:get, "https://www.waterqualitydata.us/#{uri}").to_return(status: 200, body: json_response)
+end
+
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/cassettes"
   config.hook_into :webmock
