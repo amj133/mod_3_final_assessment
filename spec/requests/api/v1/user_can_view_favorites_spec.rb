@@ -6,6 +6,8 @@ describe "GET /api/v1/user/favorites with api key" do
     uncle_jesse.create_api_key(value: "abc123")
     uncle_jesse.favorites.create(neo_reference_id: "2153306")
 
+    get_asteroid_by_id_stub
+
     get "/api/v1/user/favorites?api_key=abc123"
 
     favorites = JSON.parse(response.body)

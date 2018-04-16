@@ -14,6 +14,16 @@ def most_dangerous_day_stub
   get_nasa_service_stub("asteroids_2018-01-01_to_2018-01-07", uri)
 end
 
+def get_asteroid_by_id_stub
+  uri = "neo/rest/v1/neo/2153306?api_key=CnBYHgliiSqAiAkdkPdvuaZbCxXcnZDRO6gJCV7Z"
+  get_nasa_service_stub("asteroid_by_id_fixture", uri)
+end
+
+def get_asteroid_by_id_2_stub
+  uri = "neo/rest/v1/neo/2021277?api_key=CnBYHgliiSqAiAkdkPdvuaZbCxXcnZDRO6gJCV7Z"
+  get_nasa_service_stub("asteroid_by_id_2_fixture", uri)
+end
+
 def get_nasa_service_stub(filename, uri)
   json_response = File.open("./spec/fixtures/#{filename}.json")
   stub_request(:get, "https://api.nasa.gov/#{uri}").to_return(status: 200, body: json_response)
@@ -21,6 +31,7 @@ end
 
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/cassettes"
+  config.ignore_localhost = true
   config.hook_into :webmock
 end
 

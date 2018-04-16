@@ -4,6 +4,8 @@ feature "user can view most dangerous day" do
   context "visits root and enters start & end date" do
     describe "clicks most dangerous day button" do
       it "forwards user to most dangerous day page and displays date with asteroids" do
+        most_dangerous_day_stub
+
         visit root_path
 
         fill_in("start_date", with: "1 January, 2018")

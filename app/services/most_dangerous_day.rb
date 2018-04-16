@@ -47,24 +47,4 @@ class MostDangerousDay
       asteroids
     end
 
-    # def dates_and_asteroids(response)
-    #   date_and_count = Hash.new([])
-    #   response["near_earth_objects"].each do |date, asteroids|
-    #     asteroids.each do |asteroid|
-    #       if asteroid["is_potentially_hazardous_asteroid"] == true
-    #         binding.pry
-    #         date_and_count[date] = date_and_count[date].push(Asteroid.new(asteroid["name"], asteroid["neo_reference_id"]))
-    #         binding.pry
-    #       end
-    #     end
-    #   end
-    #   date_and_count
-    # end
-    #
-    # def most_dangerous_date_and_asteroids(response)
-    #   date_and_asteroids = {}
-    #   sorted = dates_and_asteroids(response).sort_by {|k, v| v}.last
-    #   date_and_asteroids[sorted[0]] = sorted[1]
-    # end
-
 end
